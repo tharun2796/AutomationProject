@@ -16,20 +16,20 @@ public class HandlingPropertyFile {
 	}
 
 	public static void main(String[] args) throws IOException, InterruptedException {
-		FileInputStream fis = new FileInputStream("./data/commondata.property");
+		FileInputStream fis = new FileInputStream("./data/commondata.properties");
 		Properties p = new Properties();
 		p.load(fis);
 		String url = p.getProperty("URL"); 
 		String un = p.getProperty("username");
 		String pwd = p.getProperty("password");
 		WebDriver driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(10000,TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.get(url);
 		driver.findElement(By.id("username")).sendKeys(un);
 		driver.findElement(By.name("pwd")).sendKeys(pwd);
 		driver.findElement(By.partialLinkText("Login")).click();
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 		driver.close();
 	}
 
